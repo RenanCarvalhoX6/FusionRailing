@@ -1,5 +1,5 @@
 // Header muda background quando scroll passa de 100px
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', () => {
   const header = document.querySelector('.header');
   if (window.scrollY > 100) {
     header.classList.add('scrolled');
@@ -18,7 +18,7 @@ menuToggle.addEventListener('click', () => {
   overlay.classList.toggle('active');
 });
 
-// Fechar menu ao clicar em qualquer link do menu
+// Fechar menu ao clicar em link do menu
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('active');
@@ -32,22 +32,17 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('active');
 });
 
-
-// ======= Slider projetos com navegação centralizada =======
-
+// Slider projetos com navegação centralizada
 const sliderTrack = document.querySelector('.slider-track');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
-const sliderContainer = document.querySelector('.projects-slider');
 const projectItems = sliderTrack.querySelectorAll('.project-item');
-
 let currentIndex = 0;
 
 function scrollToIndex(index) {
   if (index < 0) index = 0;
   if (index >= projectItems.length) index = projectItems.length - 1;
   currentIndex = index;
-
   projectItems[index].scrollIntoView({
     behavior: 'smooth',
     inline: 'center',
@@ -55,48 +50,44 @@ function scrollToIndex(index) {
   });
 }
 
-prevBtn.addEventListener('click', () => {
-  scrollToIndex(currentIndex - 1);
-});
+prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
 
-nextBtn.addEventListener('click', () => {
-  scrollToIndex(currentIndex + 1);
-});
-
-// Inicializa centralizado no primeiro item
+// Centraliza no primeiro item na inicialização
 scrollToIndex(0);
 
+// Contagem animada das estatísticas, reinicia ao entrar e sair da seção
+const statsSection = document.querySelector('.stats-section');
+const statsItems = statsSection.querySelectorAll('.stat-item .stat-int');
+let countingIntervals = [];
 
-
-// Intersection Observer para animar os números das estatísticas
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const stats = entry.target.querySelectorAll('.stat-item');
-      stats.forEach(item => {
-        const numberElement = item.querySelector('.stat-int');
-        const number = parseInt(numberElement.getAttribute('data-number'));
-
-        if (!isNaN(number) && number > 0) {
-          let count = 0;
-          const interval = setInterval(() => {
-            if (count < number) {
-              count += Math.ceil(number / 100);
-              numberElement.textContent = count;
-            } else {
-              clearInterval(interval);
-              numberElement.textContent = number;
-            }
-          }, 10);
-        }
+      // Começa a contagem
+      statsItems.forEach((item, idx) => {
+        const target = parseInt(item.getAttribute('data-number'));
+        let count = 0;
+        if (countingIntervals[idx]) clearInterval(countingIntervals[idx]);
+        countingIntervals[idx] = setInterval(() => {
+          if (count < target) {
+            count += Math.ceil(target / 100);
+            if (count > target) count = target;
+            item.textContent = count;
+          } else {
+            clearInterval(countingIntervals[idx]);
+          }
+        }, 10);
       });
-
-      observer.disconnect();
+    } else {
+      // Reseta a contagem para zero e limpa intervalos
+      statsItems.forEach(item => item.textContent = '0');
+      countingIntervals.forEach(interval => clearInterval(interval));
+      countingIntervals = [];
     }
   });
 }, { threshold: 0.5 });
 
-const statsSection = document.querySelector('.stats-section');
 observer.observe(statsSection);
 
 // Botão de mensagem flutuante
@@ -107,16 +98,44 @@ messageBtn.addEventListener('click', () => {
   socialButtons.classList.toggle('active');
 });
 
-// Input file (se tiver)
-document.getElementById('fileInput')?.addEventListener('change', function () {
-  var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
-  document.getElementById('fileName').textContent = fileName;
-});
+// Input file (se houver)
+const fileInput = document.getElementById('fileInput');
+if (fileInput) {
+  fileInput.addEventListener('change', () => {
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : 'No file chosen';
+    document.getElementById('fileName').textContent = fileName;
+  });
+}
 
+// Botão de orçamento rolar para feedback
 const btnEstimate = document.getElementById('btnEstimate');
-btnEstimate?.addEventListener('click', () => {
-  const feedbackSection = document.getElementById('feedback');
-  if (feedbackSection) {
-    feedbackSection.scrollIntoView({ behavior: 'smooth' });
+if (btnEstimate) {
+  btnEstimate.addEventListener('click', () => {
+    const feedbackSection = document.getElementById('feedback');
+    if (feedbackSection) {
+      feedbackSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
+
+// Carrossel de logos automático
+const track = document.querySelector('.carousel-track');
+let scrollAmount = 0;
+
+function scrollCarousel() {
+  scrollAmount += 1; // Velocidade do scroll
+  if (scrollAmount >= track.scrollWidth) {
+    scrollAmount = 0;
+  }
+  track.style.transform = `translateX(-${scrollAmount}px)`;
+  requestAnimationFrame(scrollCarousel);
+}
+
+scrollCarousel();
+window.addEventListener('load', () => {
+  const feedbackTrack = document.querySelector('.feedback-track');
+  if (feedbackTrack) {
+    // Duplicar conteúdo para loop infinito
+    feedbackTrack.innerHTML += feedbackTrack.innerHTML;
   }
 });
