@@ -1453,6 +1453,12 @@ body {
     flex: 0 0 250px;
   }
 }
-
+#home,
+#railings,
+#services,
+#projects,
+#feedback {
+  scroll-margin-top: 70px; /* Ajuste esse valor para a altura do seu header fixo */
+}
 
 
