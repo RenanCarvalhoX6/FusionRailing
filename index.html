@@ -50,6 +50,19 @@
       </div>
     </div>
   </section>
+  <section class="logo-carousel">
+  <div class="carousel">
+    <div class="carousel-track">
+      <img src="repostir/GoogleCarrosel.png" alt="Logo 1" />
+      <img src="repostir/wsibCarrosel.png" alt="Logo 2" />
+      <img src="repostir/WarrantyCarrosel.png" alt="Logo 3" />
+      <img src="repostir/houzzCarrosel.png" alt="Logo 4" />
+      <img src="repostir/FacebookCarrosel.png" alt="Logo 5" />
+      <img src="repostir/HomeStarsCarrosel.png" alt="Logo 6" />
+    </div>
+  </div>
+</section>
+
 
 
   <!-- Railings Section -->
@@ -195,19 +208,19 @@
         <button class="prev-btn" aria-label="Previous projects">&#10094;</button>
         <div class="slider-track">
           <div class="project-item">
-            <a href="https://gta-railings.ca/services/railings/porch-railings/" target="_blank" class="project-link">
+            <a href="" target="_blank" class="project-link">
               <img src="https://gta-railings.ca/wp-content/uploads/2023/08/porch-railings-2-1024x1024.jpg" alt="Porch Railings" />
               <h3>Porch Railings</h3>
             </a>
           </div>
           <div class="project-item">
-            <a href="https://gta-railings.ca/services/railings/deck-railings/" target="_blank" class="project-link">
+            <a href="" target="_blank" class="project-link">
               <img src="https://gta-railings.ca/wp-content/uploads/2023/08/deck-railings-1024x1016.jpg" alt="Deck Railings" />
               <h3>Deck Railings</h3>
             </a>
           </div>
           <div class="project-item">
-            <a href="https://gta-railings.ca/services/railings/balcony-railings/" target="_blank" class="project-link">
+            <a href="" target="_blank" class="project-link">
               <img src="https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg" alt="Balcony Railings" />
               <h3>Balcony Railings</h3>
             </a>
@@ -250,9 +263,10 @@
 
   <!-- Feedback Section -->
   <section id="feedback" class="feedback-section">
-    <div class="container">
-      <h2>What Our Clients Say</h2>
-      <div class="feedback-cards">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <div class="feedback-carousel">
+      <div class="feedback-track">
         <div class="feedback-card">
           <p>"The team at Fusion Railings provided exceptional service and top-notch quality. Our new railings look fantastic!"</p>
           <div class="client-info">
@@ -266,6 +280,7 @@
             </div>
           </div>
         </div>
+        <!-- Mais clientes: -->
         <div class="feedback-card">
           <p>"Professional and reliable, Fusion Railings exceeded our expectations on our commercial project."</p>
           <div class="client-info">
@@ -279,6 +294,7 @@
             </div>
           </div>
         </div>
+
         <div class="feedback-card">
           <p>"Excellent craftsmanship and attention to detail. Highly recommend Fusion Railings for any custom railing needs."</p>
           <div class="client-info">
@@ -292,9 +308,39 @@
             </div>
           </div>
         </div>
+
+        <!-- Clientes extras para mostrar que pode crescer -->
+        <div class="feedback-card">
+          <p>"Great service and fast installation. Would definitely recommend!"</p>
+          <div class="client-info">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 4" />
+            <div>
+              <h4>Lucas Almeida <i class="fab fa-google google-icon" title="Verified on Google"></i></h4>
+              <div class="stars" aria-label="5 star rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span>Homeowner</span>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-card">
+          <p>"Quality materials and excellent craftsmanship. Very happy with the results."</p>
+          <div class="client-info">
+            <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Client 5" />
+            <div>
+              <h4>Fernanda Souza <i class="fab fa-google google-icon" title="Verified on Google"></i></h4>
+              <div class="stars" aria-label="5 star rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span>Designer</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Quote Section -->
   <section class="quote-section">
@@ -377,5 +423,36 @@
   </div>
 
   <script src="scripts.js"></script>
+  <script>
+  window.addEventListener('load', () => {
+    const track = document.querySelector('.carousel-track');
+    const speed = 0.5; // ajuste a velocidade aqui
+    let position = 0;
+
+    // Duplica o conteúdo para loop infinito suave
+    track.innerHTML += track.innerHTML;
+
+    const totalWidth = track.scrollWidth / 2;
+
+    function animate() {
+      position += speed;
+      if (position >= totalWidth) {
+        position = 0;
+      }
+      track.style.transform = `translateX(-${position}px)`;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  });
+</script>
+<script>
+  // Garantir que o scroll inicial seja 0 no carregamento da página
+  window.scrollTo(0, 0);
+</script>
+
+
+
+
 </body>
 </html>
