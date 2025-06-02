@@ -139,3 +139,19 @@ window.addEventListener('load', () => {
     feedbackTrack.innerHTML += feedbackTrack.innerHTML;
   }
 });
+document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault(); // evita o pulo instantâneo
+
+    const targetID = link.getAttribute('href');
+    const targetSection = document.querySelector(targetID);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
