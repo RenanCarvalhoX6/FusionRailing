@@ -12,12 +12,14 @@
   />
 </head>
 <body>
+  <div id="progressBar"></div>
+   
   <header class="header">
     <div class="overlay"></div>
 
     <div class="container">
       <div class="logo">Fusion<span>Railings</span></div>
-
+         
       <nav>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -28,8 +30,19 @@
 
         </ul>
       </nav>
+      <!-- Ícones sociais aqui -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-icon facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-icon twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-icon instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
 
-<a href="#feedback" class="btn-estimate">Get an Estimate $</a>
 
       <button class="menu-toggle" aria-label="Toggle menu">
         <span class="bar"></span>
@@ -45,8 +58,8 @@
       <h1>We Supply & Install<br /><span>Custom Railings</span></h1>
       <p>Experience premium quality custom railings for your home or business.</p>
       <div class="hero-buttons">
-        <button class="btn btn-primary">Get an Estimate $</button>
-        <button class="btn btn-secondary">Past Projects -></button>
+        <button onclick="location.href='#Quote'"  class="btn btn-primary">Get an Estimate </button>
+        <button onclick="location.href='#projects'" class="btn btn-secondary">Past Projects -></button>
       </div>
     </div>
   </section>
@@ -343,7 +356,7 @@
 
 
   <!-- Quote Section -->
-  <section class="quote-section">
+  <section id="Quote" class="quote-section">
     <div class="quote-overlay">
       <div class="container quote-content">
         <div class="quote-text">
