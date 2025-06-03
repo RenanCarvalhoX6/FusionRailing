@@ -170,7 +170,7 @@ body {
 /* ========== HERO ========== */
 .hero {
   padding-top: 90px; /* igual a altura do header */
-  height: calc(100vh - 90px); /* altura da viewport menos header fixo */
+  height: 100vh; /* altura da viewport menos header fixo */
   display: flex;
   position: relative;
   align-items: center;
@@ -232,11 +232,13 @@ body {
 }
 
 .hero-buttons {
+  margin-top: 3rem; /* espaço extra abaixo do texto para não encostar no carrossel */
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* permite quebra em telas pequenas ou zoom */
 }
+
 
 .btn {
   padding: 0.8rem 2rem;
@@ -458,6 +460,27 @@ body {
   box-shadow: 0 0 15px #ca2522aa;
   transition: width 0.3s ease;
 }
+@media (max-width: 768px) {
+  .projects-section h2 {
+    display: block;          /* para ocupar toda a largura */
+    text-align: center;      /* centralizar o texto */
+    margin: 0 auto 1rem auto; /* margem abaixo para espaçamento */
+    font-size: 2rem;         /* tamanho menor para telas menores */
+  }
+
+  .projects-section h2::after {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;             /* underline menor no mobile */
+  }
+
+  .projects-section p {
+    text-align: center;      /* centralizar subtítulo */
+    max-width: 90%;          /* ocupar quase toda largura */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 
 .projects-section p {
@@ -513,6 +536,23 @@ body {
   position: relative;
   filter: grayscale(30%);
 }
+/* Ajuste para o título do projeto no mobile e tablet */
+@media (max-width: 768px) {
+  .project-item h3 {
+    position: relative;  /* tira o absolute para o fluxo normal */
+    bottom: auto;
+    left: auto;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 1.4rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    text-align: left;
+    box-shadow: none;
+    text-shadow: none;
+  }
+}
+
 
 .project-item:hover {
   box-shadow: 0 12px 30px rgba(202, 37, 34, 0.5);
@@ -1304,7 +1344,7 @@ body {
 }
 /* Why Choose Us */
 .why-choose {
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   background: #f9f9f9;
   color: #222;
   font-family: 'Poppins', sans-serif;
@@ -1629,7 +1669,21 @@ body {
 .social-icon:hover {
   color: #ca2522;
 }
-
+/* No mobile e tablet (abaixo de 768px) */
+@media (max-width: 768px) {
+  /* Esconde os ícones no header padrão */
+  .social-icons {
+    display: none;
+  }
+  
+  /* Se quiser mostrar os ícones dentro do menu mobile (nav-links), faça assim: */
+  nav .social-icons-mobile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+}
 
 
 
