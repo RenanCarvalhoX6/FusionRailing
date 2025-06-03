@@ -155,3 +155,19 @@ document.querySelectorAll('nav a[href^="#"]').forEach(link => {
   });
 });
 
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    progressBar.style.width = scrollPercent + '%';
+  }
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
