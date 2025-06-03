@@ -549,6 +549,20 @@ img, video, iframe, picture {
 .project-link {
   color: transparent;
 }
+@media (max-width: 768px) {
+  .projects-section h2 {
+    font-size: 2rem;
+    white-space: normal; /* permitir quebra de linha */
+    overflow-wrap: break-word;
+  }
+
+  .projects-section .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 
 /* ========== FEEDBACK ========== */
 .feedback-section {
