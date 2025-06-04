@@ -605,6 +605,11 @@
             title: "Outdoor Steel Balcony",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
             description: "Durable balcony railing with modern style"
+          },
+          {
+            title: "Outdoor Steel Balcony",
+            image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
+            description: "Durable balcony railing with modern style"
           }
         ]
       },
@@ -640,23 +645,27 @@
     const categoryButtons = document.querySelectorAll('.category-btn');
 
     function renderProjects(category) {
-      projectsGrid.innerHTML = '';
-      projectsSection.querySelector('h2').textContent = `Our ${data[category].title} Projects`;
-      categoryTitle.textContent = data[category].title;
-      categoryDescription.textContent = data[category].description;
-      hero.style.backgroundImage = `url(${data[category].background})`;
-
-      data[category].projects.forEach(proj => {
-        const card = document.createElement('div');
-        card.classList.add('project-card');
-        card.innerHTML = `
-        <img src="${proj.image}" alt="${proj.title}" />
-        <h3 class="project-title">${proj.title}</h3>
-        <div class="project-info"><p>${proj.description}</p></div>
-      `;
-        projectsGrid.appendChild(card);
-      });
-    }
+  projectsGrid.innerHTML = '';
+  projectsSection.querySelector('h2').textContent = `Our ${data[category].title} Projects`;
+  categoryTitle.textContent = data[category].title;
+  categoryDescription.textContent = data[category].description;
+  hero.style.backgroundImage = `url(${data[category].background})`;
+  
+  // Adicionar os projetos
+  data[category].projects.forEach(proj => {
+    const card = document.createElement('div');
+    card.classList.add('project-card');
+    card.innerHTML = `
+      <img src="${proj.image}" alt="${proj.title}" />
+      <h3 class="project-title">${proj.title}</h3>
+      <div class="project-info"><p>${proj.description}</p></div>
+    `;
+    projectsGrid.appendChild(card);
+  });
+  
+  // Rolar para o topo da seção de projetos
+  projectsSection.scrollIntoView({ behavior: 'smooth' });
+}
 
     let currentCategory = 'aluminum';
     renderProjects(currentCategory);
@@ -674,6 +683,21 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
+    // Verificar o hash da URL ao carregar a página
+function checkInitialHash() {
+  const hash = window.location.hash.substring(1); // Remove o #
+  if (hash && data[hash]) {
+    currentCategory = hash;
+    renderProjects(currentCategory);
+    
+    // Atualizar o botão ativo
+    categoryButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.category-btn[data-category="${hash}"]`).classList.add('active');
+  }
+}
+
+// Chamar a função quando a página carrega
+window.addEventListener('DOMContentLoaded', checkInitialHash);
   </script>
 
 </body>
