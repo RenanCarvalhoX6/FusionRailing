@@ -171,3 +171,29 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.classList.add('active');
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const features = document.querySelectorAll(".feature");
+  const section = document.querySelector(".why-choose");
+
+  if (!section) return;
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          features.forEach((feature, i) => {
+            setTimeout(() => {
+              feature.classList.add("animate");
+            }, i * 800); // delay entre 1 e outro (800ms)
+          });
+          observer.unobserve(section); // só dispara uma vez
+        }
+      });
+    },
+    {
+      threshold: 0.5, // quando metade da seção estiver visível
+    }
+  );
+
+  observer.observe(section);
+});
