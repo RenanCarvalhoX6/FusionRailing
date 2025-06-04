@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fusion Railings - Projetos Personalizados</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: #ffffff;
+    min-height: 100vh;
+  }
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* HEADER */
+  .header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    z-index: 10000;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ca2522;
+    user-select: none;
+  }
+  .logo span {
+    color: #ff0000;
+  }
+  .nav-categories {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-categories button {
+    background: none;
+    border: 2px solid #ca2522;
+    color: #ca2522;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-categories button:hover,
+  .nav-categories button.active {
+    background: #ca2522;
+    color: #fff;
+  }
+
+  /* HERO */
+  .category-hero {
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-top: 80px;
+    transition: background-image 0.5s ease-in-out;
+  }
+  .category-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 10, 10, 0.7);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+  }
+  .category-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .category-description {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #eee;
+  }
+
+  /* PROJECTS GRID */
+  .projects-section {
+    padding: 5rem 2rem;
+    background: #fff;
+    color: #911e1e;
+    border-radius: 12px;
+  }
+  .projects-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+    gap: 2rem;
+  }
+  .project-card {
+    position: relative;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(202,37,34,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #000;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(202,37,34,0.6);
+  }
+  .project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: transform 0.4s ease;
+    filter: brightness(0.8);
+  }
+  .project-card:hover img {
+    transform: scale(1.05);
+    filter: brightness(1);
+  }
+  .project-title {
+    position: relative;
+    z-index: 10;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ca2522;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    transition: opacity 0.3s ease;
+    user-select: none;
+  }
+  .project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 20;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    user-select: none;
+  }
+  .project-card:hover .project-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project-card:hover .project-title {
+    opacity: 0;
+  }
+
+  /* FOOTER */
+  .modern-footer {
+    background: #1a0505;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+  }
+  .footer-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://gta-railings.ca/wp-content/uploads/2023/08/porch-railings-2-1024x1024.jpg') center/cover no-repeat;
+    opacity: 0.1;
+  }
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-logo {
+    font-size: 2.5rem;
+    color: #ca2522;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+  .footer-cta {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .footer-contact {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    font-size: 1rem;
+  }
+  .btn-back-home {
+    background: #ca2522;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  .btn-back-home:hover {
+    background: #a3211f;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .category-title {
+      font-size: 2.2rem;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .footer-contact {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-categories {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Fusion<span>Railings</span></div>
+  <nav class="nav-categories">
+    <button class="category-btn active" data-category="aluminum">Aluminum</button>
+    <button class="category-btn" data-category="glass">Glass</button>
+    <button class="category-btn" data-category="steel">Steel</button>
+    <button class="category-btn" data-category="stainless">Stainless</button>
+  </nav>
+</header>
+
+<main>
+  <section class="category-hero" id="hero">
+    <div class="hero-content">
+      <h1 class="category-title">Aluminum Railings</h1>
+      <p class="category-description">Lightweight yet durable, our aluminum railings offer modern aesthetics with minimal maintenance.</p>
+    </div>
+  </section>
+
+  <section class="container projects-section" id="projects-section">
+    <h2>Our Aluminum Projects</h2>
+    <div class="projects-grid" id="projects-grid">
+      <!-- Cards serão inseridos dinamicamente aqui -->
+    </div>
+  </section>
+</main>
+
+<footer class="modern-footer">
+  <div class="footer-bg"></div>
+  <div class="container footer-content">
+    <div class="footer-logo">Fusion<span>Railings</span></div>
+    <p class="footer-cta">Ready to transform your space with premium railings?</p>
+    <div class="footer-contact">
+      <div class="contact-item"><i class="fas fa-phone"></i> <span>(123) 456-7890</span></div>
+      <div class="contact-item"><i class="fas fa-envelope"></i> <span>contact@fusionrailings.com</span></div>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span>Toronto, ON</span></div>
+    </div>
+
+    <button onclick="location.href='index.html'" class="btn-back-home" aria-label="Back to Home">
+      &larr; Back to Home
+    </button>
+  </div>
+</footer>
+
+<script>
+  const data = {
+    aluminum: {
+      title: "Aluminum Railings",
+      description: "Lightweight yet durable, our aluminum railings offer modern aesthetics with minimal maintenance.",
+      background: "https://gta-railings.ca/wp-content/uploads/2023/08/porch-railings-2-1024x1024.jpg",
+      projects: [
+        {
+          title: "Modern Porch Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/porch-railings-2-1024x1024.jpg",
+          description: "Contemporary design for residential properties"
+        },
+        {
+          title: "Commercial Deck Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/deck-railings-1024x1016.jpg",
+          description: "Durable solution for high-traffic areas"
+        },
+        {
+          title: "Outdoor Balcony Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
+          description: "Elegant and functional balcony safety"
+        }
+      ]
+    },
+    glass: {
+      title: "Glass Railings",
+      description: "Sleek and modern, our glass railings provide unobstructed views while ensuring safety.",
+      background: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
+      projects: [
+        {
+          title: "Frameless Glass Balcony",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
+          description: "Elegant solution for condominiums"
+        },
+        {
+          title: "Glass Pool Fencing",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/07/pool-railings.jpg",
+          description: "Safety without compromising the view"
+        },
+        {
+          title: "Modern Stair Glass Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/stair-railings.jpg",
+          description: "Stylish and safe stair railing option"
+        }
+      ]
+    },
+    steel: {
+      title: "Steel Railings",
+      description: "Our steel railings combine strength with timeless design for lasting durability.",
+      background: "https://gta-railings.ca/wp-content/uploads/2023/07/restaurant-railings.jpg",
+      projects: [
+        {
+          title: "Industrial Stair Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/stair-railings.jpg",
+          description: "Robust solution for commercial spaces"
+        },
+        {
+          title: "Restaurant Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/07/restaurant-railings.jpg",
+          description: "Combining safety with aesthetic appeal"
+        },
+        {
+          title: "Outdoor Steel Balcony",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
+          description: "Durable balcony railing with modern style"
+        }
+      ]
+    },
+    stainless: {
+      title: "Stainless Railings",
+      description: "Premium stainless steel railings known for their corrosion resistance and sleek design.",
+      background: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-railings.jpg",
+      projects: [
+        {
+          title: "Stainless Balcony Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-balcony.jpg",
+          description: "Sleek and modern balcony railings"
+        },
+        {
+          title: "Stainless Stair Railings",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-stairs.jpg",
+          description: "Strong and stylish stair railings"
+        },
+        {
+          title: "Stainless Pool Fencing",
+          image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-pool.jpg",
+          description: "Safe and elegant fencing for pools"
+        }
+      ]
+    }
+  };
+
+  const hero = document.querySelector('.category-hero');
+  const categoryTitle = document.querySelector('.category-title');
+  const categoryDescription = document.querySelector('.category-description');
+  const projectsGrid = document.getElementById('projects-grid');
+  const projectsSection = document.getElementById('projects-section');
+  const categoryButtons = document.querySelectorAll('.category-btn');
+
+  function renderProjects(category) {
+    projectsGrid.innerHTML = '';
+    projectsSection.querySelector('h2').textContent = `Our ${data[category].title} Projects`;
+    categoryTitle.textContent = data[category].title;
+    categoryDescription.textContent = data[category].description;
+    hero.style.backgroundImage = `url(${data[category].background})`;
+
+    data[category].projects.forEach(proj => {
+      const card = document.createElement('div');
+      card.classList.add('project-card');
+      card.innerHTML = `
+        <img src="${proj.image}" alt="${proj.title}" />
+        <h3 class="project-title">${proj.title}</h3>
+        <div class="project-info"><p>${proj.description}</p></div>
+      `;
+      projectsGrid.appendChild(card);
+    });
+  }
+
+  let currentCategory = 'aluminum';
+  renderProjects(currentCategory);
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.dataset.category === currentCategory) return;
+      currentCategory = button.dataset.category;
+      renderProjects(currentCategory);
+
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Scroll para o topo da página inteira
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
