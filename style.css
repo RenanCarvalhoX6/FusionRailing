@@ -1844,3 +1844,42 @@ img, video, iframe, picture {
     display: flex;
   }
 }
+/* ===== AJUSTES GLOBAIS PARA MOBILE ===== */
+@media (max-width: 767px) {
+  /* --- Hero Section --- */
+  .hero {
+    flex-direction: column;
+    height: auto; /* Remove altura fixa */
+    padding: 20px 0;
+  }
+  .hero-content {
+    width: 100% !important;
+    text-align: center;
+    padding: 0 15px;
+  }
+  .hero-image {
+    display: block !important;
+    width: 100%;
+    max-width: 300px; /* Controla o tamanho da imagem */
+    margin: 20px auto;
+  }
+
+  /* --- Carrossel --- */
+  .carrossel-container {
+    margin-top: 50px; /* Espaço após o Hero */
+  }
+  .carrossel img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== iPhone Landscape (667px - 736px) ===== */
+@media (min-width: 667px) and (max-width: 736px) and (orientation: landscape) {
+  .hero {
+    flex-direction: row; /* Mantém lado a lado em landscape */
+  }
+  .hero-image {
+    max-width: 40% !important; /* Imagem menor para caber */
+  }
+}
