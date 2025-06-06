@@ -187,7 +187,7 @@ img, video, iframe, picture {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("repostir/backgroundV2railing.jpg") no-repeat center/cover;
+  background: url("reposit/BACKGROUNDHERO.jpg") no-repeat center/cover;
 }
 
 .hero::after {
@@ -273,6 +273,7 @@ img, video, iframe, picture {
   padding: 0.8rem 2rem;
   border-radius: 30px;
   font-weight: 700;
+   max-width: 250px;
   cursor: pointer;
   border: none;
   font-size: 1rem;
@@ -314,6 +315,8 @@ img, video, iframe, picture {
   color: #fff;
   transform: scale(1.1);
 }
+
+
 
 /* ========== CARDS SEÇÃO RAILINGS ========== */
 .custom-railings-section {
@@ -621,106 +624,6 @@ img, video, iframe, picture {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
-  /*///////Seção projetos Feitos///////*/
-}
-.projects-grid-section {
-  background: #ffffff;
-  color: #fff;
-  padding: 4rem 1rem 6rem;
-  font-family: Poppins, sans-serif;
-  text-align: center;
-}
-
-.projects-grid-section h2 {
-  font-weight: 700;
-  font-size: 2.8rem;
-  margin-bottom: 0.75rem;
-  color: #d40c0c;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  position: relative;
-  display: inline-block;
-}
-
-.projects-grid-section h2::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 5px;
-  background: #ac0f0f;
-  margin: 0.5rem auto 0;
-  border-radius: 3px;
-  box-shadow: 0 0 15px #ff0303aa;
-}
-
-.projects-grid-section p {
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  font-weight: 300;
-  color: #000000;
-  font-style: italic;
-  letter-spacing: 0.02em;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.project-card {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  border-radius: 9px;
-  height: 320px;
-  box-shadow: 0 4px 15px rgba(3, 3, 3, 0.4);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: flex-end;
-  padding: 1.5rem;
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
-}
-
-.project-card a {
-  color: #fff;
-  text-decoration: none;
-  width: 100%;
-  display: block;
-}
-
-.project-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(0,0,0,0.9);
-  line-height: 1.3;
-}
-
-/* Responsivo */
-@media (max-width: 992px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  .projects-grid-section h2 {
-    font-size: 2rem;
-  }
 }
 
 
@@ -965,7 +868,7 @@ img, video, iframe, picture {
 .footer {
   background-color: #310c0c;
   color: #fff;
-  padding: 1rem 0;
+  padding: 3rem 0;
   font-family: Poppins, sans-serif;
 }
 
@@ -1844,42 +1747,17 @@ img, video, iframe, picture {
     display: flex;
   }
 }
-/* ===== AJUSTES GLOBAIS PARA MOBILE ===== */
-@media (max-width: 767px) {
-  /* --- Hero Section --- */
-  .hero {
-    flex-direction: column;
-    height: auto; /* Remove altura fixa */
-    padding: 20px 0;
+@media (max-width: 768px) {
+  .nav-links {
+    width: 100%; /* Ocupa toda a largura */
+    padding: 1rem;
+    align-items: center; /* Centraliza os itens */
   }
-  .hero-content {
-    width: 100% !important;
-    text-align: center;
-    padding: 0 15px;
-  }
-  .hero-image {
-    display: block !important;
-    width: 100%;
-    max-width: 300px; /* Controla o tamanho da imagem */
-    margin: 20px auto;
-  }
-
-  /* --- Carrossel --- */
-  .carrossel-container {
-    margin-top: 50px; /* Espaço após o Hero */
-  }
-  .carrossel img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* ===== iPhone Landscape (667px - 736px) ===== */
-@media (min-width: 667px) and (max-width: 736px) and (orientation: landscape) {
-  .hero {
-    flex-direction: row; /* Mantém lado a lado em landscape */
-  }
-  .hero-image {
-    max-width: 40% !important; /* Imagem menor para caber */
+  
+  .nav-links a {
+    width: 100%; /* Faz cada link ocupar toda a linha */
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem 0; /* Mais espaço vertical */
+    white-space: normal; /* Permite quebra de linha */
   }
 }
