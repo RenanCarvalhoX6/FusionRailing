@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fusion Railings</title>
+    <title>Lux Railings</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
@@ -15,7 +15,9 @@
     />
 
   </head>
+  
   <body>
+    
     <div id="progressBar"></div>
 
     <header class="header">
@@ -23,7 +25,7 @@
 
       <div class="container">
         <a href="#Home" class="logo">
-        <div class="logo"><img src="reposit\LogoLux.png" alt="Fusion Railings Logo"></div>
+        <div class="logo"><img src="reposit\LogoLux.png" alt="Lux Railings Logo"></div>
         </a>
 
         <nav>
@@ -58,7 +60,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="container hero-content">
-       <img src="reposit\H1PHerocontent.png" alt="Fusion Railings - Custom Railings" class="hero-image">
+       <img src="reposit\H1PHerocontent.png" alt="Lux Railings - Custom Railings" class="hero-image">
         <div class="hero-buttons">
           <button onclick="location.href='#Quote'" class="btn btn-primary">
             Get an Estimate
@@ -197,7 +199,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
         <h2>This Is Why People Call Lux?</h2>
         <p>
           Regardless of whether you're seeking custom railings or exploring our
-          myriad of other services, Fusion Railings emerges as a trusted
+          myriad of other services, Lux Railings emerges as a trusted
           partner. We offer a blend of excellent craftsmanship and stellar
           service, making us the top choice for your custom project.
         </p>
@@ -403,7 +405,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
           <div class="feedback-track">
             <div class="feedback-card">
               <p>
-                "The team at Fusion Railings provided exceptional service and
+                "The team at Lux Railings provided exceptional service and
                 top-notch quality. Our new railings look fantastic!"
               </p>
               <div class="client-info">
@@ -431,7 +433,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
             <!-- Mais clientes: -->
             <div class="feedback-card">
               <p>
-                "Professional and reliable, Fusion Railings exceeded our
+                "Professional and reliable, Lux Railings exceeded our
                 expectations on our commercial project."
               </p>
               <div class="client-info">
@@ -460,7 +462,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
             <div class="feedback-card">
               <p>
                 "Excellent craftsmanship and attention to detail. Highly
-                recommend Fusion Railings for any custom railing needs."
+                recommend Lux Railings for any custom railing needs."
               </p>
               <div class="client-info">
                 <img
@@ -564,7 +566,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
             <a
               href="tel:+16472034929"
               class="phone-link"
-              aria-label="Call Fusion Railings"
+              aria-label="Call Lux Railings"
             >
               <i class="fas fa-phone"></i> (647) 203-4929
             </a>
@@ -624,7 +626,7 @@ At Lux Railings, we design and install custom railings that actually make sense 
     <footer class="footer">
       <div class="container footer-content">
         <div class="footer-info">
-          <h3 class="footer-logo">Fusion<span>Railings</span></h3>
+          <h3 class="footer-logo">Lux<span>Railings</span></h3>
           <p>Transforming spaces with custom railings crafted to perfection.</p>
           <ul class="social-links">
             
@@ -651,14 +653,14 @@ At Lux Railings, we design and install custom railings that actually make sense 
           <p>Phone: <a href="tel:+16472034929">(647) 203-4929</a></p>
           <p>
             Email:
-            <a href="mailto:info@fusionrailings.com">info@fusionrailings.com</a>
+            <a href="mailto:info@Luxrailings.com">info@Luxrailings.com</a>
           </p>
           <p>Address: 123 Street Name, City, Province</p>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Fusion Railings. All rights reserved.</p>
+        <p>&copy; 2025 Lux Railings. All rights reserved.</p>
       </div>
     </footer>
 
@@ -712,6 +714,82 @@ At Lux Railings, we design and install custom railings that actually make sense 
       // Garantir que o scroll inicial seja 0 no carregamento da página
       window.scrollTo(0, 0);
     </script>
+    <script>
+// Scroll Animation System
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuração do observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        
+        // Ativa animação base
+        element.classList.add('animate');
+        
+        // Efeito Fusion especial
+        if (element.dataset.scroll === 'fusion') {
+          element.style.setProperty('--glow-intensity', '0.6');
+          
+          // Adiciona partículas
+          if (!element._particlesAdded) {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'fusion-particles';
+            
+            // Cria 8 partículas com posições aleatórias
+            for (let i = 0; i < 8; i++) {
+              const particle = document.createElement('div');
+              particle.className = 'fusion-particle';
+              particle.style.left = `${Math.random() * 100}%`;
+              particle.style.top = `${Math.random() * 100}%`;
+              particle.style.animationDelay = `${i * 0.3}s`;
+              particlesContainer.appendChild(particle);
+            }
+            
+            element.prepend(particlesContainer);
+            element._particlesAdded = true;
+          }
+        }
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  // Observa todos os elementos com data-scroll
+  document.querySelectorAll('[data-scroll]').forEach((section, index) => {
+    // Delay progressivo para efeito em cascata
+    section.style.transitionDelay = `${index * 0.15}s`;
+    observer.observe(section);
+  });
+
+  // Efeito de glow ao scrollar
+  let lastScroll = 0;
+  const scrollHandler = () => {
+    const currentScroll = window.scrollY;
+    
+    document.querySelectorAll('[data-scroll="fusion"]').forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const viewportMiddle = currentScroll + (window.innerHeight / 2);
+      const distance = Math.abs(viewportMiddle - (sectionTop + sectionHeight / 2));
+      const intensity = Math.max(0, 0.6 - (distance / (window.innerHeight / 2)));
+      
+      section.style.setProperty('--glow-intensity', intensity.toString());
+    });
+    
+    lastScroll = currentScroll;
+  };
+
+  // Otimização de performance
+  window.addEventListener('scroll', () => {
+    window.requestAnimationFrame(scrollHandler);
+  }, { passive: true });
+
+  // Dispara uma primeira verificação
+  scrollHandler();
+});
+</script>
     
   </body>
 </html>
