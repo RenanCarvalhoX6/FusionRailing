@@ -68,33 +68,38 @@ img, video, iframe, picture {
 }
 
 .header.scrolled {
-  height: 60px;
+  height: 90px;
   background-color: rgba(30, 0, 0, 0.8);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 .header .container {
-  height: 80px;
+  height: 800px;
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
 }
 
 .logo {
-  font-family: Poppins, sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  letter-spacing: 0.1em;
-  color: #ca2522;
-  user-select: none;
-  transition: color 0.3s ease;
-  font-size: 1.6rem; /* menor */
-  max-width: 180px;
   flex-shrink: 1;
   max-width: 200px;
-  min-width: 100px;
-  font-size: clamp(1.2rem, 2vw, 2rem);
+  min-width: 200px;
+  transition: opacity 0.3 ease;
+}
+.logo img{
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 150px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  max-width: 2000px;
+  margin-left: 0;
+}
+.logo:hover img{
+  transform: scale(1.05);
+  opacity: 50px;
 }
 
 .logo span {
@@ -107,15 +112,17 @@ img, video, iframe, picture {
   gap: 2rem;
   overflow-x: auto;
   font-size: 1rem;
-  padding: 0.3rem 0.6rem;
+  padding: 0.5rem 5rem;
+  margin-left: auto;
+  right: 20px;
 }
 
 .nav-links a {
   color: #f0f0f0;
   text-decoration: none;
-  font-weight: bold;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: block;
   transition: color 0.3s ease, transform 0.3s ease;
   user-select: none;
@@ -180,7 +187,7 @@ img, video, iframe, picture {
 
 /* ========== HERO ========== */
 .hero {
-  padding-top: 90px; /* igual a altura do header */
+  padding-top: 50px; /* igual a altura do header */
   height: 100vh;
   display: flex;
   position: relative;
@@ -188,6 +195,19 @@ img, video, iframe, picture {
   justify-content: center;
   text-align: center;
   background: url("reposit/BACKGROUNDHERO.jpg") no-repeat center/cover;
+}
+.hero-image{
+  max-width: 100%;
+  height: 500px;
+  margin-bottom: 0.5rem;
+  width: auto;
+  animation: fadeUp 3x ease forwards;
+  animation-delay: 0.3s;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+.hero-image:hover{
+  transform: scale(1.05);
 }
 
 .hero::after {
@@ -201,72 +221,30 @@ img, video, iframe, picture {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   transform: translateY(-40px);
   opacity: 0;
   animation: fadeUp 3s ease forwards;
   animation-delay: 0.3s;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
 }
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  font-weight: 1000;
-  margin-bottom: 3rem;
-  line-height: 1.2;
-  animation: pulse 4s ease-in-out infinite;
-  color: #fff;
-  cursor: default;
-  transition: none;
-}
-
-.hero-content h1 span {
-  position: relative;
-  color: #fff;
-  padding-bottom: 0.3rem;
-  animation: pulse 4s ease-in-out infinite;
-}
-
-.hero-content h1 span::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  width: 0;
-  background-color: #d32f2f;
-  border-radius: 2px;
-  animation: slideIn 4s ease forwards;
-}
-
-.hero-content p {
-  font-weight: 600;
-  font-size: 1.11rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 2.5rem;
-  color: #fff;
-  animation: pulse 3s ease-in-out infinite;
-  cursor: default;
-  transition: none;
-}
-
-/* Hero content hover */
-.hero-content h1:hover,
-.hero-content h1 span:hover,
-.hero-content p:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 20px #161616, 0 0 40px #0c0c0c;
-  cursor: pointer;
-
   /*BOTÕES DA HERO*/
-}
 
 .hero-buttons {
-  margin-top: 3rem;
+  margin-top: -40px;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   flex-wrap: wrap;
+  width: 100%;  /* Garante que os botões ocupem 100% da largura disponível */
+  box-sizing: border-box; /* Para não exceder o limite de largura */
+  padding: 0 1rem; /* Adiciona um pequeno espaçamento interno */
+  z-index: 10; /* Mantém os botões acima de outros conteúdos */
 }
 
 .btn {
@@ -285,36 +263,61 @@ img, video, iframe, picture {
 /* Group button shared styles */
 .btn-primary,
 .btn-secondary {
-  border-radius: 10px;
-  width: 200px;
+  width: 200px; /* Largura fixa para os botões */
   height: 60px;
   font-weight: 700;
   font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: #863535;
+  border-radius: 10px;
+  transition: background-position 0.5s ease-in-out, transform 0.3s ease;
+  background: linear-gradient(45deg, #6e7f7a, #c1c1c1, #6e7f7a); 
+  background-size: 200% 200%;
   color: #fff;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
-
-.btn-primary:hover {
-  background: #b71c1c;
-  transform: scale(1.1);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid #863535;
-  color: #ff6f60;
-  height: 60px;
-}
-
+.btn-primary:hover,
 .btn-secondary:hover {
-  background: #d32f2f;
-  color: #fff;
-  transform: scale(1.1);
+  transform: scale(1.1); /* Efeito de aumento ao passar o mouse */
+  background-position: 100% 100%; /* Movimenta o gradiente durante o hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Sombra mais forte no hover */
 }
+/* Efeito de brilho metálico */
+.btn-primary::after,
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: shine 2s infinite; /* Brilho contínuo */
+  opacity: 0;
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+
+/* Animação de brilho metálico */
+@keyframes shine {
+  0% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 0.3;
+  }
+}
+
+
 
 
 
@@ -481,7 +484,6 @@ img, video, iframe, picture {
 }
 
 
-
 /* ========== PROJECTS ========== */
 .projects-section {
   padding: 6rem 1rem 8rem;
@@ -600,7 +602,7 @@ img, video, iframe, picture {
 .project-item h3 {
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  left: 40px;
   color: #fff;
   font-size: 1.6rem;
   font-weight: 700;
@@ -612,9 +614,14 @@ img, video, iframe, picture {
 .project-link {
   color: transparent;
 }
+.responsive-heading {
+  word-wrap: break-word; /* Permite quebra de palavras */
+  white-space: normal; /* Garante que o texto quebre em várias linhas conforme necessário */
+}
+
 @media (max-width: 768px) {
   .projects-section h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     white-space: normal; /* permitir quebra de linha */
     overflow-wrap: break-word;
   }
@@ -1038,16 +1045,23 @@ img, video, iframe, picture {
   .header .container {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 0.5rem 1rem;
-    height: 60px;
+    height: 50px;
   }
 
   .logo {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    max-width: 150px;
+    height: 80px;/*Posição logo mobile*/
     flex-shrink: 0;
+    margin-left: 0;
+  }
+  .logo img{
+    max-height: 90px;
+    width: 150px;/*Tamanhi da logo no mobile*/
+    right: 10rem;
+    margin-left: 0;
   }
 
   nav {
@@ -1090,26 +1104,31 @@ img, video, iframe, picture {
 
   .menu-toggle .bar {
     width: 100%;
-    height: 4px;
-    background-color: white;
-    border-radius: 2px;
+    height: 1px;
+    background-color: rgb(85, 84, 84);
+    border-radius: 10px;
   }
 
   .btn-estimate {
     display: none;
+    height: 20px;
   }
 
   .hero {
     padding-top: 60px;
-    height: calc(100vh - 60px);
+    
   }
 
   .hero-content h1 {
     font-size: 2rem;
   }
+  .hero-image {
+    max-width: 80%; /* Garante que a imagem ocupe toda a largura da tela */
+    height: auto; /* Ajusta a altura automaticamente */
+    margin-bottom: 2rem; /* Ajusta o espaço entre a imagem e os botões */
+  }
 
   .hero-buttons {
-    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 1rem;
@@ -1192,6 +1211,127 @@ img, video, iframe, picture {
     margin-top: 2rem;
   }
 }
+/* Mobile devices - ajustes para smartphones */
+@media (max-width: 768px) {
+  /* Ajustes no header */
+  .header {
+    height: 60px;
+    padding: 0 1rem;
+  }
+  
+  .header .container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    height: 50px;
+  }
+
+  /* Logo no mobile */
+  .logo {
+    max-width: 150px;
+    height: 80px;
+    margin-left: 0; /* Remove qualquer margem à esquerda */
+    margin-right: 0;
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 100%; /* Logo ocupará 100% da largura do contêiner */
+    max-height: 80px;
+    margin-left: 75px;
+    object-fit: contain;
+  }
+
+  /* Ajustes na navegação do menu */
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    height: calc(100vh - 60px);
+    width: 100%; /* Garante que o menu ocupe toda a largura */
+    background-color: rgba(148, 16, 16, 0.95);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 11000;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  /* Ícones sociais dentro do menu mobile */
+  nav .social-icons-mobile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .social-icons {
+    display: none;
+  }
+}
+
+/* Para dispositivos móveis (menores que 768px) */
+@media (max-width: 768px) {
+  /* Menu de navegação */
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    height: calc(100vh - 60px);
+    width: 100%; /* Ocupa toda a largura */
+    background-color: rgba(148, 16, 16, 0.95);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 11000;
+  }
+
+  /* Ajuste no comportamento do menu quando ativo */
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: flex;
+    width: 35px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .menu-toggle .bar {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  /* Ajustar o comportamento dos links dentro do menu */
+  .nav-links a {
+    font-size: 1.2rem; /* Tamanho maior no mobile */
+    padding: 1rem 0;
+    width: 100%; /* Ocupa toda a largura */
+    text-align: center;
+    white-space: normal; /* Permite quebra de linha */
+  }
+}
+
 
 /* Smartphones (below 480px) */
 @media (max-width: 480px) {
@@ -1393,7 +1533,7 @@ img, video, iframe, picture {
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .stats-container {
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -1423,6 +1563,157 @@ img, video, iframe, picture {
     display: block !important;
     min-width: 0;
   }
+  .header .container {
+    display: flex;
+    justify-content: flex-start; /* Garantir alinhamento à esquerda */
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  /* Ajuste da logo para tablets */
+  .logo {
+    max-width: 200px;
+    height: 80px;
+    margin-left: 75px; /* Remove qualquer margem à esquerda */
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 100%; /* A logo ocupa 100% da largura do contêiner */
+    max-height: 80px;
+    object-fit: contain;
+  }
+
+  /* Ajuste nos links de navegação */
+  .nav-links {
+    padding: 1rem 2rem; /* Reduzir o padding para tablets */
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap; /* Permitir que os itens quebrem linha se necessário */
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+
+  /* Ajustes nos links de navegação */
+  .nav-links a {
+    font-size: 1rem; /* Ajustar o tamanho da fonte para se ajustar melhor */
+    padding: 0.5rem 1rem;
+    text-align: center;
+    display: block;
+  }
+
+  /* Ajustar a largura do menu de navegação para ocupar mais espaço em telas médias */
+  .nav-links.active {
+    width: 70%; /* Ajusta a largura para 70% da tela em dispositivos de tablet */
+  }
+
+  .menu-toggle {
+    display: block; /* Certificar que o botão de menu hamburger esteja visível */
+  }
+
+  /* Ajuste no estilo do menu hamburger */
+  .menu-toggle .bar {
+    background-color: white;
+  }
+
+  /* Ajustar o overlay para ficar visível e cobrir apenas a área necessária */
+  .overlay.active {
+    width: 100%;
+    opacity: 1;
+  }
+
+}
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .stats-container {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    flex: 1 1 45%;
+    max-width: 48%;
+    margin-bottom: 1.5rem;
+  }
+
+  .cards-group {
+    flex-wrap: wrap !important;
+    justify-content: center;
+    gap: 1rem !important;
+  }
+
+  .card {
+    flex: 1 1 45% !important;
+    max-width: 45% !important;
+    height: auto !important;
+    min-height: 300px;
+    margin-bottom: 1.5rem !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: block !important;
+    min-width: 0;
+  }
+  .header .container {
+    display: flex;
+    justify-content: flex-start; /* Garantir alinhamento à esquerda */
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  /* Ajuste da logo para tablets */
+  .logo {
+    max-width: 200px;
+    height: 80px;
+    margin-left: -30px; /* Remove qualquer margem à esquerda */
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 100%; /* A logo ocupa 100% da largura do contêiner */
+    max-height: 80px;
+    object-fit: contain;
+  }
+
+  /* Ajuste nos links de navegação */
+  .nav-links {
+    padding: 1rem 2rem; /* Reduzir o padding para tablets */
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap; /* Permitir que os itens quebrem linha se necessário */
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+
+  /* Ajustes nos links de navegação */
+  .nav-links a {
+    font-size: 1rem; /* Ajustar o tamanho da fonte para se ajustar melhor */
+    padding: 0.5rem 1rem;
+    text-align: center;
+    display: block;
+  }
+
+  /* Ajustar a largura do menu de navegação para ocupar mais espaço em telas médias */
+  .nav-links.active {
+    width: 70%; /* Ajusta a largura para 70% da tela em dispositivos de tablet */
+  }
+
+  .menu-toggle {
+    display: block; /* Certificar que o botão de menu hamburger esteja visível */
+  }
+
+  /* Ajuste no estilo do menu hamburger */
+  .menu-toggle .bar {
+    background-color: white;
+  }
+
+  /* Ajustar o overlay para ficar visível e cobrir apenas a área necessária */
+  .overlay.active {
+    width: 100%;
+    opacity: 1;
+  }
+
 }
 
 /* ========== Stats Section ========== */
@@ -1677,7 +1968,9 @@ img, video, iframe, picture {
     top: 60px;
     right: 0;
     height: calc(100vh - 60px);
-    width: 220px;
+    width: 50%;
+    min-width: 200px; /* Garante que não fique muito estreito */
+    max-width: 250px;/*Aqui ajusto o tamanho do menu hamburguer para mobile*/
     background-color: rgba(148, 16, 16, 0.95);
     flex-direction: column;
     align-items: flex-start;
@@ -1688,6 +1981,7 @@ img, video, iframe, picture {
     z-index: 11000;
     display: flex;
   }
+  
 
   .nav-links.active {
     transform: translateX(0);
@@ -1745,6 +2039,7 @@ img, video, iframe, picture {
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+    height: 50;
   }
 }
 @media (max-width: 768px) {
