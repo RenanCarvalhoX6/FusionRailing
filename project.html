@@ -5,27 +5,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fusion Railings - Projetos Personalizados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    :root {
+      --primary-color: #ca2522;
+      --primary-hover: #a61e1c;
+      --secondary-color: #310c0c;
+      --text-dark: #333;
+      --text-light: #fff;
+      --text-gray: #eee;
+      --bg-light: #f8f8f8;
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      color: #fff;
+      color: var(--text-dark);
       background: #ffffff;
       min-height: 100vh;
+      line-height: 1.6;
     }
 
     .container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 15px;
     }
 
     /* HEADER */
@@ -35,62 +47,110 @@
       left: 0;
       width: 100%;
       height: 80px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.98);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 1rem;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-      z-index: 10000;
+      padding: 0 2rem;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .header.scrolled {
+      height: 70px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #ca2522;
-      user-select: none;
+  height: 60px; /* Ajuste conforme necessário */
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+  transition: var(--transition);
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .logo {
+    height: 50px;
+  }
+}
+
+    .nav-container {
       display: flex;
       align-items: center;
-    }
-
-
-    .logo span {
-      color: #ff0000;
+      gap: 1.5rem;
     }
 
     .nav-categories {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     .nav-categories button {
       background: none;
-      border: 2px solid #ca2522;
-      color: #ca2522;
-      padding: 0.5rem 1rem;
-      font-weight: 700;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
       cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s, color 0.3s;
+      border-radius: 30px;
+      transition: var(--transition);
+      font-size: 0.95rem;
     }
 
     .nav-categories button:hover,
     .nav-categories button.active {
-      background: #ca2522;
-      color: #fff;
+      background: var(--primary-color);
+      color: var(--text-light);
+    }
 
+    /* Botão Home */
+    .btn-home {
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-light);
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .btn-home:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-home i {
+      font-size: 1.1rem;
     }
 
     /* HERO */
     .category-hero {
-      height: 60vh;
-      min-height: 400px;
+      height: 70vh;
+      min-height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       position: relative;
       margin-top: 80px;
       transition: background-image 0.5s ease-in-out;
@@ -108,64 +168,77 @@
       z-index: 2;
       max-width: 800px;
       padding: 2rem;
+      animation: fadeInUp 0.8s ease-out;
     }
 
     .category-title {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
-      color: #fff;
+      color: var(--text-light);
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .category-description {
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: #eee;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     /* PROJECTS GRID */
     .projects-section {
-      padding: 5rem 2rem;
-      background: #fff;
-      color: #911e1e;
-      border-radius: 12px;
-      margin-bottom: 120px;
+      padding: 6rem 0;
+      background: var(--bg-light);
       position: relative;
     }
 
     .projects-section h2 {
       text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .projects-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 3px;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-      margin: 0 10px;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2.5rem;
     }
 
     .project-card {
       position: relative;
       height: 450px;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(202, 37, 34, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       cursor: pointer;
-      transition: transform 0.3s ease;
-      background: #f8f8f8;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      color: #000;
-      margin: 0;
-
+      transition: var(--transition);
+      animation: fadeInUp 0.8s forwards;
+      animation-delay: calc(var(--delay) * 0.1s);
     }
 
     .project-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 25px rgba(202, 37, 34, 0.6);
+      box-shadow: 0 15px 40px rgba(202, 37, 34, 0.3);
     }
 
     .project-card img {
@@ -175,25 +248,28 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      transition: transform 0.4s ease;
-      filter: brightness(0.8);
+      transition: var(--transition);
+      filter: brightness(0.85);
     }
 
     .project-card:hover img {
       transform: scale(1.05);
-      filter: brightness(1);
+      filter: brightness(0.7);
     }
 
     .project-title {
-      position: relative;
+      position: absolute;
       z-index: 10;
       font-weight: 700;
       font-size: 1.8rem;
-      color: #f7f6f6;
-      padding: 1rem 1.5rem;
+      color: var(--text-light);
+      padding: 1.5rem;
       text-align: center;
-      transition: opacity 0.3s ease;
+      transition: var(--transition);
       user-select: none;
+      width: 100%;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     }
 
     .project-info {
@@ -201,18 +277,20 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      color: #000;
-      padding: 1.5rem;
-      font-size: 1rem;
-      line-height: 1.4;
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--text-dark);
+      padding: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
       opacity: 0;
       transform: translateY(100%);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: var(--transition);
       z-index: 20;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      user-select: none;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
     }
 
     .project-card:hover .project-info {
@@ -224,79 +302,18 @@
       opacity: 0;
     }
 
-    /*Botão Back to Home*/
-    .btn-home {
-      background: none;
-      border: 2px solid #fe0000;
-      background-color: #bc2f2f;
-      color: #ffffff;
-      padding: 0.5rem 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s, color 0.3s;
-      font-size: 1.2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: -750px;
-      /* Adiciona um pequeno espaçamento entre a logo e o botão */
-    }
-
-
-    .btn-home i {
-      font-size: 1.5rem;
-    }
-
-    .btn-home:hover {
-      background: #ffffff;
-      color: #0b0b0b;
-    }
-
-    .nav-categories {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-
-      /* Posição do botão na barra de navegação */
-      .btn-home {
-        position: absolute;
-        top: 17px;
-        /* Posiciona o botão logo abaixo do cabeçalho */
-        right: 50px;
-        /* Mover para o canto superior direito do cabeçalho */
-        font-size: 1.2rem;
-        /* Ajuste o tamanho do ícone */
-      }
-
-      /* Ajustes na navegação para o botão ficar no lugar certo */
-      .header {
-        position: relative;
-        justify-content: space-between;
-      }
-    }
-
     /* FOOTER */
     .footer {
-      background-color: #310c0c;
-      /* Cor de fundo */
-      color: #fff;
-      padding: 3rem 0;
-      font-family: 'Poppins', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-light);
+      padding: 4rem 0 2rem;
     }
 
     .footer-content {
       display: flex;
-      justify-content: center;
-      /* Centraliza o conteúdo */
       flex-direction: column;
-      /* Organiza o conteúdo em uma coluna */
       align-items: center;
-      /* Alinha o conteúdo ao centro */
-      gap: 1rem;
-      /* Espaçamento entre os elementos */
+      gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -304,226 +321,227 @@
     .footer-logo {
       font-weight: 800;
       font-size: 2.5rem;
-      color: #ca2522;
+      color: var(--primary-color);
     }
 
     .footer-logo span {
       font-weight: 400;
-      color: #fff;
+      color: var(--text-light);
     }
 
     .footer-info p {
       margin-top: 1rem;
       font-size: 1.2rem;
       text-align: center;
-      color: #eee;
+      color: var(--text-gray);
+      max-width: 600px;
     }
 
     .footer-bottom {
-      margin-top: 2rem;
+      margin-top: 3rem;
       text-align: center;
       font-size: 1rem;
       color: #aaa;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
     }
 
-    /* Responsividade para telas pequenas */
-    @media (max-width: 768px) {
-      .footer-info {
-        text-align: center;
-      }
-
-      .footer-logo {
-        font-size: 2rem;
-      }
-
-      .footer-info p {
-        font-size: 1.1rem;
-        padding: 0 10px;
-      }
-
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .category-title {
-        font-size: 2rem;
-        margin: 0 10px;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin: 0px 25px;
-      }
-
-      .footer-contact {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0 10px;
-      }
-
-      .nav-categories {
-        display: none;
-      }
-
-
-      .container {
-        padding: 0 1rem;
-        width: 100%;
-      }
-
-      /* Ajuste para a categoria hero */
-      .category-hero {
-        background-size: cover;
-        background-position: center;
-        padding: 0 10px;
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      .hero-content {
-        padding: 1rem;
-        /* Reduz o padding para telas menores */
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 1024px) {
-
-      /* Ajustes para tablets (iPads) */
-      .header {
-        justify-content: space-between;
-        /* Ajusta o espaçamento entre a logo e o botão */
-      }
-
-      /* Faz o botão 'home' ficar à esquerda na tela */
-      .btn-home {
-        margin-left: 20px;
-        /* Ajuste o valor conforme necessário */
-        font-size: 1.3rem;
-      }
-    }
-
-    @media (max-width: 1366px) {
-
-      /* Ajustes para tablets (iPads) */
-      .header {
-        justify-content: space-between;
-        /* Ajusta o espaçamento entre a logo e o botão */
-      }
-
-      /* Faz o botão 'home' ficar à esquerda na tela */
-      .btn-home {
-        margin-left: 20px;
-        /* Ajuste o valor conforme necessário */
-        font-size: 1.3rem;
-      }
-    }
-
-    /* Animação para quando os cards aparecerem */
+    /* ANIMAÇÕES */
     @keyframes fadeInUp {
       0% {
         opacity: 0;
         transform: translateY(30px);
-        /* Desloca o card para baixo */
       }
-
       100% {
         opacity: 1;
         transform: translateY(0);
-        /* O card volta à sua posição original */
       }
     }
 
-    .project-card {
-      position: relative;
-      height: 450px;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(202, 37, 34, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      background: #f8f8f8;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      color: #000;
-      margin: 0;
-      opacity: 0;
-      /* Inicialmente invisível */
-      animation: fadeInUp 0.8s forwards;
-      /* A animação irá ocorrer */
-      animation-delay: 0.3s;
-      /* Um pequeno atraso para os cards aparecerem um por um */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
-    /* O efeito ao passar o mouse sobre o card */
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 25px rgba(202, 37, 34, 0.6);
+    /* RESPONSIVIDADE */
+    @media (max-width: 1200px) {
+      .category-hero {
+        height: 60vh;
+      }
     }
 
-    .project-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      transition: transform 0.4s ease;
-      filter: brightness(0.8);
+    @media (max-width: 992px) {
+      .header {
+        padding: 0 1.5rem;
+      }
+      
+      .nav-categories {
+        gap: 0.8rem;
+      }
+      
+      .nav-categories button,
+      .btn-home {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .category-title {
+        font-size: 2.8rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
     }
 
-    .project-card:hover img {
-      transform: scale(1.05);
-      filter: brightness(1);
+    @media (max-width: 768px) {
+      .header {
+        height: 70px;
+        padding: 0 1rem;
+      }
+      
+      .logo {
+        font-size: 1.6rem;
+      }
+      
+      .nav-categories {
+        display: none;
+      }
+      
+      .btn-home {
+        padding: 0.5rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        justify-content: center;
+      }
+      
+      .btn-home span {
+        display: none;
+      }
+      
+      .category-hero {
+        height: 50vh;
+        min-height: 400px;
+        margin-top: 70px;
+        background-attachment: scroll;
+      }
+      
+      .category-title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .category-description {
+        font-size: 1.1rem;
+      }
+      
+      .projects-section {
+        padding: 4rem 0;
+      }
+      
+      .projects-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
+      
+      .project-card {
+        height: 400px;
+      }
+      
+      .footer {
+        padding: 3rem 0 1.5rem;
+      }
+      
+      .footer-logo {
+        font-size: 2rem;
+      }
+      
+      .footer-info p {
+        font-size: 1rem;
+      }
     }
 
-    .project-title {
-      position: relative;
-      z-index: 10;
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: #f7f6f6;
-      padding: 1rem 1.5rem;
-      text-align: center;
-      transition: opacity 0.3s ease;
-      user-select: none;
+    @media (max-width: 576px) {
+      .category-hero {
+        height: 45vh;
+        min-height: 350px;
+      }
+      
+      .category-title {
+        font-size: 1.8rem;
+      }
+      
+      .category-description {
+        font-size: 1rem;
+      }
+      
+      .projects-section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .project-card {
+        height: 350px;
+      }
+      
+      .project-title {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+      
+      .project-info {
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <header class="header">
-    <div class="logo">Fusion<span>Railings</span></div>
-    <button class="btn-home" onclick="window.location.href='index.html'">
-      <i class="fas fa-home"></i> <!-- Ícone de casa -->
-    </button>
-    <nav class="nav-categories">
-      <button class="category-btn active" data-category="aluminum">Aluminum</button>
-      <button class="category-btn" data-category="glass">Glass</button>
-      <button class="category-btn" data-category="steel">Steel</button>
-      <button class="category-btn" data-category="stainless">Stainless</button>
-    </nav>
+  <header class="header" id="header">
+   <a href="index.html" class="logo">
+      <img src="reposit\LogoLux.png" alt="Fusion Railings" class="logo-img">
+    </a>
+    <div class="nav-container">
+      <nav class="nav-categories">
+        <button class="category-btn active" data-category="aluminum">Aluminum</button>
+        <button class="category-btn" data-category="glass">Glass</button>
+        <button class="category-btn" data-category="steel">Steel</button>
+        <button class="category-btn" data-category="stainless">Stainless</button>
+      </nav>
+      <a href="index.html" class="btn-home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+    </div>
   </header>
 
   <main>
     <section class="category-hero" id="hero">
       <div class="hero-content">
         <h1 class="category-title">Aluminum Railings</h1>
-        <p class="category-description">Lightweight yet durable, our aluminum railings offer modern aesthetics with
-          minimal maintenance.</p>
+        <p class="category-description">Lightweight yet durable, our aluminum railings offer modern aesthetics with minimal maintenance.</p>
       </div>
     </section>
 
-    <section class="container projects-section" id="projects-section">
-      <h2>Our Aluminum Projects</h2>
-      <div class="projects-grid" id="projects-grid">
-        <!-- Cards serão inseridos dinamicamente aqui -->
+    <section class="projects-section" id="projects-section">
+      <div class="container">
+        <h2>Our Aluminum Projects</h2>
+        <div class="projects-grid" id="projects-grid">
+          <!-- Cards serão inseridos dinamicamente aqui -->
+        </div>
       </div>
     </section>
   </main>
@@ -534,10 +552,10 @@
         <h3 class="footer-logo">Fusion<span>Railings</span></h3>
         <p>Transforming spaces with custom railings crafted to perfection.</p>
       </div>
-
       <div class="footer-bottom">
         <p>&copy; 2025 Fusion Railings. All rights reserved.</p>
       </div>
+    </div>
   </footer>
 
   <script>
@@ -550,17 +568,17 @@
           {
             title: "Modern Porch Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/porch-railings-2-1024x1024.jpg",
-            description: "Contemporary design for residential properties"
+            description: "Contemporary design for residential properties with clean lines and minimalist appeal."
           },
           {
             title: "Commercial Deck Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/deck-railings-1024x1016.jpg",
-            description: "Durable solution for high-traffic areas"
+            description: "Durable solution for high-traffic areas with superior weather resistance."
           },
           {
             title: "Outdoor Balcony Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
-            description: "Elegant and functional balcony safety"
+            description: "Elegant and functional balcony safety systems with panoramic views."
           }
         ]
       },
@@ -572,17 +590,17 @@
           {
             title: "Frameless Glass Balcony",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
-            description: "Elegant solution for condominiums"
+            description: "Elegant solution for condominiums with minimalist hardware for maximum visibility."
           },
           {
             title: "Glass Pool Fencing",
             image: "https://gta-railings.ca/wp-content/uploads/2023/07/pool-railings.jpg",
-            description: "Safety without compromising the view"
+            description: "Tempered glass panels that provide safety without compromising the view."
           },
           {
             title: "Modern Stair Glass Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/stair-railings.jpg",
-            description: "Stylish and safe stair railing option"
+            description: "Frosted or clear glass options for stylish and safe stair railings."
           }
         ]
       },
@@ -594,22 +612,17 @@
           {
             title: "Industrial Stair Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/stair-railings.jpg",
-            description: "Robust solution for commercial spaces"
+            description: "Robust solution for commercial spaces with powder-coated finishes."
           },
           {
             title: "Restaurant Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/07/restaurant-railings.jpg",
-            description: "Combining safety with aesthetic appeal"
+            description: "Custom designs that combine safety with aesthetic appeal for hospitality."
           },
           {
             title: "Outdoor Steel Balcony",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
-            description: "Durable balcony railing with modern style"
-          },
-          {
-            title: "Outdoor Steel Balcony",
-            image: "https://gta-railings.ca/wp-content/uploads/2023/08/balcony-railings-2-1024x1024.jpg",
-            description: "Durable balcony railing with modern style"
+            description: "Wrought iron look with modern durability for outdoor spaces."
           }
         ]
       },
@@ -621,85 +634,102 @@
           {
             title: "Stainless Balcony Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-balcony.jpg",
-            description: "Sleek and modern balcony railings"
+            description: "Sleek and modern balcony railings with brushed or polished finishes."
           },
           {
             title: "Stainless Stair Railings",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-stairs.jpg",
-            description: "Strong and stylish stair railings"
+            description: "Strong and stylish stair railings for contemporary homes."
           },
           {
             title: "Stainless Pool Fencing",
             image: "https://gta-railings.ca/wp-content/uploads/2023/08/stainless-pool.jpg",
-            description: "Safe and elegant fencing for pools"
+            description: "Corrosion-resistant fencing that complements pool areas beautifully."
           }
         ]
       }
     };
 
+    // DOM Elements
     const hero = document.querySelector('.category-hero');
     const categoryTitle = document.querySelector('.category-title');
     const categoryDescription = document.querySelector('.category-description');
     const projectsGrid = document.getElementById('projects-grid');
     const projectsSection = document.getElementById('projects-section');
     const categoryButtons = document.querySelectorAll('.category-btn');
+    const header = document.getElementById('header');
 
+    // Render projects function
     function renderProjects(category) {
-  projectsGrid.innerHTML = '';
-  projectsSection.querySelector('h2').textContent = `Our ${data[category].title} Projects`;
-  categoryTitle.textContent = data[category].title;
-  categoryDescription.textContent = data[category].description;
-  hero.style.backgroundImage = `url(${data[category].background})`;
-  
-  // Adicionar os projetos
-  data[category].projects.forEach(proj => {
-    const card = document.createElement('div');
-    card.classList.add('project-card');
-    card.innerHTML = `
-      <img src="${proj.image}" alt="${proj.title}" />
-      <h3 class="project-title">${proj.title}</h3>
-      <div class="project-info"><p>${proj.description}</p></div>
-    `;
-    projectsGrid.appendChild(card);
-  });
-  
-  // Rolar para o topo da seção de projetos
-  projectsSection.scrollIntoView({ behavior: 'smooth' });
-}
+      projectsGrid.innerHTML = '';
+      projectsSection.querySelector('h2').textContent = `Our ${data[category].title}`;
+      categoryTitle.textContent = data[category].title;
+      categoryDescription.textContent = data[category].description;
+      hero.style.backgroundImage = `url(${data[category].background})`;
+      
+      // Add projects with staggered animation delays
+      data[category].projects.forEach((proj, index) => {
+        const card = document.createElement('div');
+        card.classList.add('project-card');
+        card.style.setProperty('--delay', index);
+        card.innerHTML = `
+          <img src="${proj.image}" alt="${proj.title}" loading="lazy" />
+          <h3 class="project-title">${proj.title}</h3>
+          <div class="project-info"><p>${proj.description}</p></div>
+        `;
+        projectsGrid.appendChild(card);
+      });
+    }
 
+    // Initialize with first category
     let currentCategory = 'aluminum';
     renderProjects(currentCategory);
 
+    // Category button event listeners
     categoryButtons.forEach(button => {
       button.addEventListener('click', () => {
         if (button.dataset.category === currentCategory) return;
+        
         currentCategory = button.dataset.category;
         renderProjects(currentCategory);
-
+        
+        // Update active button
         categoryButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-
-        // Scroll para o topo da página inteira
+        
+        // Update URL hash
+        window.location.hash = currentCategory;
+        
+        // Scroll to top smoothly
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
-    // Verificar o hash da URL ao carregar a página
-function checkInitialHash() {
-  const hash = window.location.hash.substring(1); // Remove o #
-  if (hash && data[hash]) {
-    currentCategory = hash;
-    renderProjects(currentCategory);
-    
-    // Atualizar o botão ativo
-    categoryButtons.forEach(btn => btn.classList.remove('active'));
-    document.querySelector(`.category-btn[data-category="${hash}"]`).classList.add('active');
-  }
-}
 
-// Chamar a função quando a página carrega
-window.addEventListener('DOMContentLoaded', checkInitialHash);
+    // Check URL hash on load
+    function checkInitialHash() {
+      const hash = window.location.hash.substring(1);
+      if (hash && data[hash]) {
+        currentCategory = hash;
+        renderProjects(currentCategory);
+        
+        // Update active button
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.category-btn[data-category="${hash}"]`).classList.add('active');
+      }
+    }
+
+    // Header scroll effect
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Event listeners
+    window.addEventListener('DOMContentLoaded', checkInitialHash);
+    window.addEventListener('scroll', handleScroll);
   </script>
-
 </body>
-
 </html>
