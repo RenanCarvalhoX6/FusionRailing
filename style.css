@@ -561,3 +561,16 @@ img, video, iframe, picture { max-width: 100%; height: auto; display: block; }
   .quote-overlay { padding: 2rem; }
   .floating-message-button { bottom: 25px; right: 25px; }
 }
+@media (max-width: 992px) {
+  .logo:hover img {
+    transform: none !important;
+    filter: brightness(1.2) !important;
+    /* Remove qualquer drop-shadow extra se quiser */
+  }
+}
+@media (max-width: 1366px) {
+  .logo:hover img {
+    transform: none !important;
+    filter: brightness(1.2) !important;
+  }
+}
