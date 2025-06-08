@@ -17,6 +17,7 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   color: #fff;
+  line-height: 1.7;
   background: #2a0a0a;
   min-height: 100vh;
   display: flex;
@@ -117,6 +118,7 @@ img, video, iframe, picture {
   color: #ff6f60;
   transform: translateY(-2px);
 }
+
 
 .menu-toggle {
   display: none;
@@ -237,7 +239,7 @@ img, video, iframe, picture {
   gap: 1.5rem;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin:-40px;
   flex-wrap: wrap;
 }
 .btn {
@@ -301,7 +303,6 @@ img, video, iframe, picture {
   height: 40px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(100%);
   opacity: 0.7;
   transition: all 0.3s ease;
 }
@@ -366,6 +367,7 @@ img, video, iframe, picture {
   height: 400px;
   background-size: cover;
   background-position: center;
+  
   border-radius: 12px;
   overflow: hidden;
   position: relative;
@@ -436,6 +438,7 @@ img, video, iframe, picture {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
+
 
 /* ========== STATS SECTION ========== */
 .stats-section {
@@ -597,6 +600,7 @@ img, video, iframe, picture {
 .project-item {
   flex: 0 0 calc(33.333% - 1rem);
   scroll-snap-align: start;
+  
   min-width: 300px;
   border-radius: 10px;
   overflow: hidden;
@@ -643,29 +647,6 @@ img, video, iframe, picture {
   background: rgba(202, 37, 34, 0.2);
 }
 
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(202, 37, 34, 0.8);
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 10;
-  display: none;
-}
-
-.prev-btn {
-  left: 0;
-}
-
-.next-btn {
-  right: 0;
-}
 
 /* ========== FEEDBACK SECTION ========== */
 .feedback-section {
@@ -888,7 +869,7 @@ img, video, iframe, picture {
   gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 10px;
 }
 
 .footer-info, .footer-links, .footer-contact {
@@ -992,7 +973,7 @@ img, video, iframe, picture {
   height: 3px;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(202,37,34,0.8), 
+    rgba(45, 46, 48, 0.8), 
     transparent);
   animation: fusionScan 3s linear infinite;
 }
@@ -1306,6 +1287,10 @@ img, video, iframe, picture {
     margin-left: 0 !important;
     z-index: 100;
   }
+  .logo:hover img {
+  transform: scale(1) rotate(0deg);
+  filter: drop-shadow(0 0 0px rgba(202, 37, 34, 0));
+}
 
   .menu-toggle {
     position: absolute;
@@ -1317,3 +1302,4 @@ img, video, iframe, picture {
     right: 20px;
   }
 }
+
