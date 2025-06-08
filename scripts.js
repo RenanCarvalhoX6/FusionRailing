@@ -32,29 +32,7 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('active');
 });
 
-// Slider projetos com navegação centralizada
-const sliderTrack = document.querySelector('.slider-track');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const projectItems = sliderTrack.querySelectorAll('.project-item');
-let currentIndex = 0;
 
-function scrollToIndex(index) {
-  if (index < 0) index = 0;
-  if (index >= projectItems.length) index = projectItems.length - 1;
-  currentIndex = index;
-  projectItems[index].scrollIntoView({
-    behavior: 'smooth',
-    inline: 'center',
-    block: 'nearest'
-  });
-}
-
-prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
-nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
-
-// Centraliza no primeiro item na inicialização
-scrollToIndex(0);
 
 // Contagem animada das estatísticas, reinicia ao entrar e sair da seção
 const statsSection = document.querySelector('.stats-section');
@@ -118,42 +96,36 @@ if (btnEstimate) {
   });
 }
 
-// Carrossel de logos automático
-const track = document.querySelector('.carousel-track');
-let scrollAmount = 0;
+// Feedback carousel infinite loop
+function setupFeedbackCarousel() {
+  const feedbackTrack = document.querySelector('.feedback-track');
+  if (!feedbackTrack) return;
 
-function scrollCarousel() {
-  scrollAmount += 1; // Velocidade do scroll
-  if (scrollAmount >= track.scrollWidth) {
-    scrollAmount = 0;
+  // Clone all feedback cards
+  const feedbackCards = feedbackTrack.querySelectorAll('.feedback-card');
+  feedbackCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    feedbackTrack.appendChild(clone);
+  });
+
+  // Animation
+  let scrollAmount = 0;
+  const scrollSpeed = 0.6; // Adjust speed here
+
+  function animateFeedback() {
+    scrollAmount += scrollSpeed;
+    if (scrollAmount >= feedbackTrack.scrollWidth / 2) {
+      scrollAmount = 0;
+    }
+    feedbackTrack.style.transform = `translateX(-${scrollAmount}px)`;
+    requestAnimationFrame(animateFeedback);
   }
-  track.style.transform = `translateX(-${scrollAmount}px)`;
-  requestAnimationFrame(scrollCarousel);
+
+  animateFeedback();
 }
 
-scrollCarousel();
-window.addEventListener('load', () => {
-  const feedbackTrack = document.querySelector('.feedback-track');
-  if (feedbackTrack) {
-    // Duplicar conteúdo para loop infinito
-    feedbackTrack.innerHTML += feedbackTrack.innerHTML;
-  }
-});
-document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault(); // evita o pulo instantâneo
-
-    const targetID = link.getAttribute('href');
-    const targetSection = document.querySelector(targetID);
-
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+// Call this function when the page loads
+window.addEventListener('load', setupFeedbackCarousel);
 
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
