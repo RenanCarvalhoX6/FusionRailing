@@ -1,4 +1,3 @@
-// Header muda background quando scroll passa de 100px
 window.addEventListener('scroll', () => {
   const header = document.querySelector('.header');
   if (window.scrollY > 100) {
@@ -8,33 +7,52 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Toggle menu mobile
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const overlay = document.querySelector('.overlay');
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const overlay = document.querySelector('.overlay');
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  overlay.classList.toggle('active');
-});
+  // Toggle menu
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    overlay.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  });
 
-// Fechar menu ao clicar em link do menu
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
+  // Fechar menu ao clicar nos links
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+
+      // Fecha o menu
+      navLinks.classList.remove('active');
+      overlay.classList.remove('active');
+      menuToggle.classList.remove('active');
+      document.body.classList.remove('menu-open');
+
+      // Scroll para a seção
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Fechar menu ao clicar no overlay
+  overlay.addEventListener('click', () => {
     navLinks.classList.remove('active');
     overlay.classList.remove('active');
+    menuToggle.classList.remove('active');
+    document.body.classList.remove('menu-open');
   });
 });
 
-// Fechar menu ao clicar na overlay
-overlay.addEventListener('click', () => {
-  navLinks.classList.remove('active');
-  overlay.classList.remove('active');
-});
-
-
-
-// Contagem animada das estatísticas, reinicia ao entrar e sair da seção
+// Contagem animada das estatísticas
 const statsSection = document.querySelector('.stats-section');
 const statsItems = statsSection.querySelectorAll('.stat-item .stat-int');
 let countingIntervals = [];
@@ -101,16 +119,16 @@ function setupFeedbackCarousel() {
   const feedbackTrack = document.querySelector('.feedback-track');
   if (!feedbackTrack) return;
 
-  // Clone all feedback cards
   const feedbackCards = feedbackTrack.querySelectorAll('.feedback-card');
+  if (feedbackCards.length < 2) return; // Não duplica se só tem 1
+
   feedbackCards.forEach(card => {
     const clone = card.cloneNode(true);
     feedbackTrack.appendChild(clone);
   });
 
-  // Animation
   let scrollAmount = 0;
-  const scrollSpeed = 0.6; // Adjust speed here
+  const scrollSpeed = 0.6;
 
   function animateFeedback() {
     scrollAmount += scrollSpeed;
@@ -137,12 +155,7 @@ window.addEventListener('scroll', () => {
     progressBar.style.width = scrollPercent + '%';
   }
 });
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
+
 document.addEventListener("DOMContentLoaded", () => {
   const features = document.querySelectorAll(".feature");
   const section = document.querySelector(".why-choose");
@@ -169,3 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(section);
 });
+
+// Reveal animation on scroll
+function revealOnScroll() {
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      el.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('DOMContentLoaded', revealOnScroll);
