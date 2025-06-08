@@ -306,16 +306,16 @@ img, video, iframe, picture { max-width: 100%; height: auto; display: block; }
   transition: background 0.3s; z-index: 2; pointer-events: none;
 }
 .project-item:hover {
-  transform: translateY(-14px) scale(1.035);
-  box-shadow: 0 24px 60px rgba(202,37,34,0.32),0 4px 24px rgba(0,0,0,0.16);
-  border-color: #000000;
+  transform: none;
+  box-shadow: 0 12px 32px rgba(202,37,34,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  border-color: #ca2522;
 }
 .project-item:hover::before {
   background: linear-gradient(180deg,rgba(255,255,255,0.08) 0%,rgba(202,37,34,0.18) 100%);
 }
 .project-item:hover img {
-  filter: grayscale(0%) brightness(1.08) drop-shadow(0 12px 40px rgba(202,37,34,0.18));
-  transform: scale(1.07) rotate(-1deg);
+  filter: brightness(1.04);
+  transform: none;
 }
 .project-item:hover h3 {
   background: linear-gradient(90deg,#3f212100 60%,#fff 100%);
